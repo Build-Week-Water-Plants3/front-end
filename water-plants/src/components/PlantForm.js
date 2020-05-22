@@ -31,7 +31,9 @@ const PlantForm = (props) => {
     }
 
     const handleSubmit = (event) => {
-        setPlants([...plants, newPlant]);
+        event.preventDefault();
+        setPlants([...plants, {...newPlant}]);
+        console.log(plants);
         setNewPlant(blankPlant);
     }
 
@@ -49,6 +51,33 @@ const PlantForm = (props) => {
                                             onChange={handleChange}/></div>
             <div>Image (URL): <input type="url" name={'image'} value={newPlant.image} onChange={handleChange}/></div>
             <button style={{maxWidth: '30%'}} onClick={handleSubmit}>Submit</button>
+
+            {/*    /***************
+                  DEBUGGING (REMOVE LATER)
+                   ****************/}
+            <div style={{borderStyle: "solid"}}>
+                <h1>Debug Box (Temporary):</h1>
+                <h2>Controlled inputs:</h2>
+                <ul>
+                    <li>ID: {newPlant.id}</li>
+                    <li>Nickname: {newPlant.nickname} </li>
+                    <li>Species: {newPlant.species} </li>
+                    <li>Water: {newPlant.h2oFrequency} </li>
+                    <li>Image: <img src={newPlant.image}/></li>
+                </ul>
+                <div>
+                    <h2>All Plants:</h2>
+                    {plants.map((plant) =>
+                        <ul>
+                            <li>ID: {plant.id}</li>
+                            <li>Nickname: {plant.nickname} </li>
+                            <li>Species: {plant.species} </li>
+                            <li>Water: {plant.h2oFrequency} </li>
+                            <li>Image: <img src={plant.image}/></li>
+                        </ul>
+                    )}
+                </div>
+            </div>
         </form>
     )
 }
