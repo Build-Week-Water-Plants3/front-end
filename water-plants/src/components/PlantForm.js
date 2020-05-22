@@ -3,15 +3,27 @@ import * as yup from 'yup';
 import dummyPlants from "../dummydata";
 
 const PlantForm = (props) => {
-
-    const [newPlant, setNewPlant] = useState({});
+    const [plants, setPlants] = useState(dummyPlants);
+    const blankPlant = {
+        id: plants.length + 1,
+        nickname: "",
+        species: "",
+        h2oFrequency: "",
+        image: ""
+    }
+    const [newPlant, setNewPlant] = useState(blankPlant);
 
     const handleChange = (event) => {
         setNewPlant({...newPlant, [event.target.name]: event.target.value})
     }
 
+    const handleSubmit = (event) => {
+        setPlants([...plants, newPlant]);
+        setNewPlant(blankPlant);
+    }
+
     return (
-        <form style={{display: 'flex', flexDirection: 'column'}}>
+        <form style={{display: 'flex', flexDirection: 'column'}} onSubmit={handleSubmit}>
             <h1>Add a New Plant!</h1>
             <div>Nickname: <input type='text' name={'nickname'} value={newPlant.nickname} onChange={handleChange}/>
             </div>
@@ -20,6 +32,7 @@ const PlantForm = (props) => {
             <div>How Often to Water: <input type='text' name={'h2oFrequency'} value={newPlant.h2oFrequency}
                                             onChange={handleChange}/></div>
             <div>Image (URL): <input type="url" name={'image'} value={newPlant.image} onChange={handleChange}/></div>
+            <button style={{maxWidth: '30%'}} onClick={handleSubmit}>Submit</button>
         </form>
     )
 }
