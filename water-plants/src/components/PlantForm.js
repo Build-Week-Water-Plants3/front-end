@@ -18,7 +18,8 @@ const PlantForm = (props) => {
         id: plants.length + 1,
         nickname: "",
         species: "",
-        h2oFrequency: "",
+        h2oFrequencyTimes: "",
+        h2oFrequencyPeriod: "",
         image: ""
     }
     const [newPlant, setNewPlant] = useState(blankPlant);
@@ -47,8 +48,22 @@ const PlantForm = (props) => {
             </div>
             <div>Species: <input type='text' name={'species'} value={newPlant.species} onChange={handleChange}/></div>
             {/*note to self: change water frequency selection to dropdown menus*/}
-            <div>How Often to Water: <input type='text' name={'h2oFrequency'} value={newPlant.h2oFrequency}
-                                            onChange={handleChange}/></div>
+            <div style={{display: 'flex', flexDirection: 'row'}}>Water the plant
+                <select style={{marginLeft: '10px', marginRight: '10px'}} name="h2oFrequencyTimes"
+                        onChange={handleChange}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select> times per
+                <select style={{marginLeft: '10px', marginRight: '10px'}} name="h2oFrequencyPeriod"
+                        onChange={handleChange}>
+                    <option value="day">day</option>
+                    <option value="week">week</option>
+                    <option value="month">month</option>
+                </select>
+            </div>
             <div>Image (URL): <input type="url" name={'image'} value={newPlant.image} onChange={handleChange}/></div>
             <button style={{maxWidth: '30%'}} onClick={handleSubmit}>Submit</button>
 
@@ -62,7 +77,7 @@ const PlantForm = (props) => {
                     <li>ID: {newPlant.id}</li>
                     <li>Nickname: {newPlant.nickname} </li>
                     <li>Species: {newPlant.species} </li>
-                    <li>Water: {newPlant.h2oFrequency} </li>
+                    <li>Water {newPlant.h2oFrequencyTimes} times per {newPlant.h2oFrequencyPeriod}</li>
                     <li>Image: <img src={newPlant.image}/></li>
                 </ul>
                 <div>
@@ -72,7 +87,7 @@ const PlantForm = (props) => {
                             <li>ID: {plant.id}</li>
                             <li>Nickname: {plant.nickname} </li>
                             <li>Species: {plant.species} </li>
-                            <li>Water: {plant.h2oFrequency} </li>
+                            <li>Water {plant.h2oFrequencyTimes} times per {plant.h2oFrequencyPeriod}</li>
                             <li>Image: <img src={plant.image}/></li>
                         </ul>
                     )}
