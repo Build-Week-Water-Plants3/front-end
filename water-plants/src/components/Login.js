@@ -21,9 +21,10 @@ class Login extends React.Component {
   login = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://water-my-plants3.herokuapp.com/api/auth/login", this.state.saved)
+      .post("/login", this.state.saved)
       .then(res => {
-        localStorage.setItem("token", res.data.payload);
+        localStorage.setItem("token", res.data.token);
+        console.log(res);
         this.props.history.push("/protected");
       })
       .catch(err => {
