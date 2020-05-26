@@ -3,7 +3,7 @@
  ***************/
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
-
+import axios from 'axios';
 /***************
  COMPONENTS/DATA
  ***************/
@@ -38,6 +38,8 @@ const PlantForm = (props) => {
 
     const [newPlantValidity, setNewPlantValidity] = useState(false);
 
+    const [users, setUsers] = useState([])
+
     useEffect(() => {
         formSchema.isValid(newPlant).then(valid => {
             setNewPlantValidity(valid);
@@ -55,13 +57,23 @@ const PlantForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         //later on this will need to be changed into an axios post, or else a separate useEffect hook will be added that will tie to such a post
-        if (newPlantValidity === true) {
-            setPlants([...plants, {...newPlant}]);
-            setNewPlant({...blankPlant, id: blankPlant.id += 1})
-        } else {
-            alert("You must validly complete all inputs before submitting");
-        }
-    }
+    //     if (newPlantValidity === true) {
+    //         setPlants([...plants, {...newPlant}]);
+    //         setNewPlant({...blankPlant, id: blankPlant.id += 1})
+    //     } else {
+    //         alert("You must validly complete all inputs before submitting");
+    //     }
+    // }
+// const handleSubmit = (event) => {
+   
+    props.onSubmit(plants);
+    axios
+    .post("https://reqres.in/api/users", plants)
+    .then(response =>  setUsers([...users, response.data]))
+    .catch(err => console.log(err));
+  };
+
+
 
     /***************
      DISPLAY
@@ -117,6 +129,8 @@ const PlantForm = (props) => {
                         </ul>
                     )}
                 </div>
+
+                
             </div>
         </form>
     )
