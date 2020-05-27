@@ -56,7 +56,6 @@ const PlantForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         //later on this will need to be changed into an axios post, or else a separate useEffect hook will be added that will tie to such a post
-
         if (newPlantValidity === true) {
             setPlants([...plants, {...newPlant}]);
             setNewPlant({...blankPlant, id: blankPlant.id += 1})
