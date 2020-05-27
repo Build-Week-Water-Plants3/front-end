@@ -10,6 +10,14 @@ import { Provider } from 'react-redux';
 import axios from "axios";
 
 
+axios.post('https://water-my-plants3.herokuapp.com/api/auth/login')
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.log(`error`)
+  })
+
 
 const store = createStore(reducer, applyMiddleware(thunk)); 
 

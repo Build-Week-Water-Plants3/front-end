@@ -33,7 +33,7 @@ const RegisterForm = (props) => {
     }
 
     return (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center ">
         <form onSubmit={submitHandler}>
             <h1>Register Here</h1>
 
@@ -46,7 +46,7 @@ const RegisterForm = (props) => {
             <input name="Number" placeholder="Number" 
             value={formState.Number} onChange={changeHandler}/>
 
-            <button type="submit" onClick={props.getFriend}>Submit</button>
+            <button className="btn btn-block btn-primary mt-3" type="submit" onClick={props.getFriend}>Submit</button>
         </form>
         </div>
 
