@@ -7,6 +7,7 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react'
 import PlantForm from './components/PlantForm';
+import Logout from "./components/Logout";
 
 function App() {
   return (
@@ -15,10 +16,10 @@ function App() {
         <div className="d-flex justify-content-center">
         <h1>Water My Plants</h1>
         </div>
-        <NavBar/>
+        <Route exact path="/" component={NavBar} />
         <Route exact path="/register" component={RegisterForm} />
         <Switch>
-          <PrivateRoute exact path="/protected" component={PlantForm} />
+          <PrivateRoute exact path="/protected" component={()=>(<div><Logout/><PlantForm/></div>)} />
           <Route exact path="/login" component={Login} />
         </Switch>
       </div>
