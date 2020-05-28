@@ -1,18 +1,31 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import dummyPlants from "../dummydata";
-import axios from 'axios';
+import {axiosWithAuth} from "../util/axiosWithAuth";
 
 
 const PlantsDisplay = props => {
+    const [userPlants, setUserPlants] = useState([]);
+
+    useEffect(() => {
+        axiosWithAuth()
+            .get(`/users/${props.currentUser.id}/plants`)
+            .then(res => {
+                setUserPlants(res.data);
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    }, []);
+
     return (
         <div style={{borderStyle: "solid", margin: '20px'}}>
             <h2>Your Plants:</h2>
-            {dummyPlants.map((plant) =>
+            {userPlants.map((plant) =>
                 <ul>
-                    <li>ID: {plant.id}</li>
                     <li>Nickname: {plant.nickname} </li>
-                    <li>Species: {plant.species} </li>
-                    <li>Water {plant.h2oFrequencyTimes} times per {plant.h2oFrequencyPeriod}</li>
+                    <li>Species: {plant.species_name} </li>
+                    <li>{plant.h2Ofrequency}</li>
                     <li>Image: <img src={plant.image}/></li>
                 </ul>
             )}
