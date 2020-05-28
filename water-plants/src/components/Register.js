@@ -37,13 +37,13 @@ const RegisterForm = (props) => {
         <form onSubmit={submitHandler}>
             <h1>Register Here</h1>
 
-            <input name="username" placeholder="username" 
+            <input className="form-control" name="username" placeholder="username" 
             value={formState.username} onChange={changeHandler}/>
 
-            <input name="password" placeholder="password" 
+            <input className="form-control"name="password" placeholder="password" 
             value={formState.password} onChange={changeHandler}/>
 
-            <input name="Number" placeholder="Number" 
+            <input className="form-control"name="Number" placeholder="number" 
             value={formState.Number} onChange={changeHandler}/>
 
             <button className="btn btn-block btn-primary mt-3" type="submit" onClick={props.getFriend}>Submit</button>
