@@ -37,6 +37,9 @@ function App() {
                         <Login currentUser={currentUser} handleUserChange={handleUserChange}
                                setCurrentUser={setCurrentUser}/>
                     </Route>
+                    <Route exact path="/plantform">
+                        <PlantForm currentUser={currentUser}/>
+                    </Route>
                 </Switch>
             </div>
         </Router>
