@@ -20,7 +20,7 @@ const RegisterForm = (props) => {
 
     const submitHandler = e => {
         e.preventDefault();
-
+        props.history.push('/login');
         props.PostRegister(formState);
         
         setFormState({

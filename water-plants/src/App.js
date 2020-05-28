@@ -14,6 +14,7 @@ import RegisterForm from "./components/Register";
 import NavBar from "./components/NavBar";
 import PlantForm from './components/PlantForm';
 import PlantsDisplay from "./components/PlantsDisplay";
+import Logout from "./components/Logout";
 
 
 /***************
@@ -68,6 +69,7 @@ function App() {
             </div>
         </Router>
     );
+
 }
 
 

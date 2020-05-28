@@ -3,25 +3,24 @@ import { connect } from 'react-redux';
 import {axiosWithAuth} from "../util/axiosWihAuth"
 
 const UserInfo = (props) => {
-    const [info, setInfo] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         axiosWithAuth()
-            .get('/friends')
-            .then(res => setFriendsList(res.data))
+            .get('/users')
+            .then(res => setUser(res.data))
             .catch(err => console.log(err))
-    }, [FriendsList]);
+    }, [Info]);
 
     return (
         <>
-            {FriendsList.map((item) => {
+            {User.map((data) => {
                 return (
                     <>
                         <br/>
-                            <p>{item.name}</p>
-                            <p>age: {item.age}</p>
-                            <p>height: {item.email}</p>
-                            <p>id: {item.id}</p>
+                            <p>username:{data.username}</p>
+                            <p>password: {data.password}</p>
+                            <p>number: {data.Number}</p>
                         <br/>
                     </>
                 )
