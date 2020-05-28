@@ -6,9 +6,10 @@ const Login = (props) => {
     const login = event => {
         event.preventDefault();
         axiosWithAuth()
-            .post("/login", props.currentUser)
+            .post("/auth/login", props.currentUser)
             .then(res => {
-                localStorage.setItem("token", res.data.token);
+                window.localStorage.setItem("token", res.data.jwt_token);
+                console.log(res.data.jwt_token);
                 props.setCurrentUser({...props.currentUser, id: res.data.id})
                 console.log(res);
                 props.history.push("/protected");

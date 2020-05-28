@@ -1,21 +1,39 @@
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+/***************
+ LIBRARIES
+ ***************/
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import React, {useState, useEffect} from 'react'
+import './App.css';
+
+/***************
+ COMPONENTS
+ ***************/
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import RegisterForm from "./components/Register";
 import NavBar from "./components/NavBar";
-import logo from './logo.svg';
-import './App.css';
-import React, {useState, useEffect} from 'react'
 import PlantForm from './components/PlantForm';
+import PlantsDisplay from "./components/PlantsDisplay";
 
+
+/***************
+ MAIN COMPONENT
+ ***************/
 function App() {
 
+    /***************
+     HOOKS
+     ***************/
     const [currentUser, setCurrentUser] = useState({
         "username": "",
         "password": "",
         id: null
     });
 
+
+    /***************
+     EVENT HANDLERS
+     ***************/
     const handleUserChange = (event) => {
         setCurrentUser({
             ...currentUser,
@@ -23,6 +41,9 @@ function App() {
         });
     };
 
+    /***************
+     DISPLAY & ROUTING
+     ***************/
     return (
         <Router>
             <div className="App container-fluid">
@@ -36,6 +57,9 @@ function App() {
                     <Route exact path="/login">
                         <Login currentUser={currentUser} handleUserChange={handleUserChange}
                                setCurrentUser={setCurrentUser}/>
+                    </Route>
+                    <Route exact path="/plantsdisplay">
+                        <PlantsDisplay currentUser={currentUser}/>
                     </Route>
                     <Route exact path="/plantform">
                         <PlantForm currentUser={currentUser}/>

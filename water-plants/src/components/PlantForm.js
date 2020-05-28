@@ -3,7 +3,8 @@
  ***************/
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
-import {axiosWithAuth} from "../util/axiosWithAuth"
+import {axiosWithAuth} from "../util/axiosWithAuth";
+import axios from 'axios'
 
 /***************
  COMPONENTS/DATA
@@ -11,16 +12,15 @@ import {axiosWithAuth} from "../util/axiosWithAuth"
 import dummyPlants from "../dummydata";
 
 const PlantForm = (props) => {
-
     /***************
      VALIDATION
      ***************/
     const formSchema = yup.object().shape({
-        nickname: yup.string().required("Nickname is a required field."),
-        species: yup.string().required("Species name is a required field."),
-        h2oFrequencyTimes: yup.string().required("Must choose a number of times to water plant"),
-        h2oFrequencyPeriod: yup.string().required("Must choose a watering period"),
-        image: yup.string().url().required("must include a plant image URL")
+        "nickname": yup.string().required("Nickname is a required field."),
+        "species_name": yup.string().required("Species name is a required field."),
+        //h2oFrequencyTimes: yup.string().required("Must choose a number of times to water plant"),
+        //h2oFrequencyPeriod: yup.string().required("Must choose a watering period"),
+        "image": yup.string().url().required("must include a plant image URL")
     });
 
     /***************
@@ -28,55 +28,53 @@ const PlantForm = (props) => {
      ***************/
     const [plants, setPlants] = useState(dummyPlants);
     const blankPlant = {
-        id: plants.length + 1,
+        //id: plants.length + 1,
         nickname: "",
-        species: "",
-        h2oFrequencyTimes: "1",
-        h2oFrequencyPeriod: "day",
-        image: ""
+        H2Ofrequency: "a few times",
+        image: "",
+        //h2oFrequencyTimes: "1",
+        //h2oFrequencyPeriod: "day",
+        species_name: "",
+        user_id: props.currentUser.id
     }
     const [newPlant, setNewPlant] = useState(blankPlant);
 
-    const [newPlantValidity, setNewPlantValidity] = useState(false);
+    //const [newPlantValidity, setNewPlantValidity] = useState(false);
 
-    useEffect(() => {
-        formSchema.isValid(newPlant).then(valid => {
-            setNewPlantValidity(valid);
-        })
-    }, [newPlant])
+    /*    useEffect(() => {
+            formSchema.isValid(newPlant).then(valid => {
+                setNewPlantValidity(valid);
+            })
+        }, [newPlant])*/
 
-
-    /*  login = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("/users/{id}", this.state)
-      .then(res => {
-        localStorage.setItem("token", res.data.token);
-        console.log(res);
-        this.props.history.push("/protected");
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  };*/
 
     /***************
      EVENT HANDLERS
      ***************/
     const handleChange = (event) => {
         setNewPlant({...newPlant, [event.target.name]: event.target.value})
+        console.log(newPlant);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //later on this will need to be changed into an axios post, or else a separate useEffect hook will be added that will tie to such a post
-        if (newPlantValidity === true) {
-            setPlants([...plants, {...newPlant}]);
-            setNewPlant({...blankPlant, id: blankPlant.id += 1})
-        } else {
-            alert("You must validly complete all inputs before submitting");
-        }
+        /*if (newPlantValidity === true) {*/
+        console.log(props.currentUser.id);
+        console.log(newPlant);
+        axiosWithAuth()
+            .post(`/users/${props.currentUser.id}/plants`, /*JSON.stringify(*/newPlant/*)*/)
+            .then(res => {
+                console.log(newPlant);
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+        setNewPlant({...blankPlant})
+        /*} else {*/
+        /*alert("You must validly complete all inputs before submitting");*/
     }
+
 
     /***************
      DISPLAY
@@ -86,8 +84,9 @@ const PlantForm = (props) => {
             <h1>Add a New Plant!</h1>
             <div>Nickname: <input type='text' name={'nickname'} value={newPlant.nickname} onChange={handleChange}/>
             </div>
-            <div>Species: <input type='text' name={'species'} value={newPlant.species} onChange={handleChange}/></div>
-            <div style={{display: 'flex', flexDirection: 'row'}}>Water the plant
+            <div>Species: <input type='text' name={'species_name'} value={newPlant.species_name}
+                                 onChange={handleChange}/></div>
+            {/*  <div style={{display: 'flex', flexDirection: 'row'}}>Water the plant
                 <select style={{marginLeft: '10px', marginRight: '10px'}} name="h2oFrequencyTimes"
                         onChange={handleChange}>
                     <option value="1">1</option>
@@ -103,7 +102,7 @@ const PlantForm = (props) => {
                     <option value="week">week</option>
                     <option value="month">month</option>
                 </select>
-            </div>
+            </div>*/}
             <div>Image (URL): <input type="url" name={'image'} value={newPlant.image} onChange={handleChange}/></div>
             <button style={{maxWidth: '30%'}} onClick={handleSubmit}>Submit</button>
 
@@ -124,10 +123,9 @@ const PlantForm = (props) => {
                     <h2>All Plants:</h2>
                     {plants.map((plant) =>
                         <ul>
-                            <li>ID: {plant.id}</li>
                             <li>Nickname: {plant.nickname} </li>
-                            <li>Species: {plant.species} </li>
-                            <li>Water {plant.h2oFrequencyTimes} times per {plant.h2oFrequencyPeriod}</li>
+                            <li>Species: {plant.species_name} </li>
+                            <li>Water {plant.h2Ofrequency} times per {plant.h2oFrequencyPeriod}</li>
                             <li>Image: <img src={plant.image}/></li>
                         </ul>
                     )}
