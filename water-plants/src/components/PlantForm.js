@@ -3,7 +3,7 @@
  ***************/
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
-import axios from 'axios';
+import {axiosWithAuth} from "../util/axiosWithAuth"
 
 /***************
  COMPONENTS/DATA
@@ -45,6 +45,20 @@ const PlantForm = (props) => {
         })
     }, [newPlant])
 
+
+    /*  login = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post("/users/{id}", this.state)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        console.log(res);
+        this.props.history.push("/protected");
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  };*/
 
     /***************
      EVENT HANDLERS
