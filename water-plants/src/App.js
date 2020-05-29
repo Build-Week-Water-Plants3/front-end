@@ -2,14 +2,13 @@
  LIBRARIES
  ***************/
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import './App.css';
 
 /***************
  COMPONENTS
  ***************/
 import Login from "./components/Login";
-import PrivateRoute from "./components/PrivateRoute";
 import RegisterForm from "./components/Register";
 import NavBar from "./components/NavBar";
 import PlantForm from './components/PlantForm';
@@ -54,17 +53,20 @@ function App() {
                 <NavBar/>
                 <Switch>
                     <Route exact path="/register" component={RegisterForm}/>
-                    <PrivateRoute exact path="/protected" component={PlantForm}/>
                     <Route exact path="/login">
                         <Login currentUser={currentUser} handleUserChange={handleUserChange}
                                setCurrentUser={setCurrentUser}/>
                     </Route>
+                    <Route exact path="/logout">
+                        <Logout setCurrentUser={setCurrentUser}/>
+                    </Route>
                     <Route exact path="/plantsdisplay">
                         <PlantsDisplay currentUser={currentUser}/>
                     </Route>
-                    <Route exact path="/plantform">
+                    <Route exact path="/plantsform">
                         <PlantForm currentUser={currentUser}/>
                     </Route>
+                    <Route exact path={"/"}/>
                 </Switch>
             </div>
         </Router>
