@@ -53,7 +53,7 @@ function App() {
                 <NavBar/>
                 <Switch>
                     <Route exact path="/register" component={RegisterForm}/>
-                    <PrivateRoute exact path="/protected" component={PlantForm}/>
+               {/* <PrivateRoute exact path="/protected" component={PlantForm}/>*/}
                     <Route exact path="/login">
                         <Login currentUser={currentUser} handleUserChange={handleUserChange}
                                setCurrentUser={setCurrentUser}/>
@@ -61,9 +61,9 @@ function App() {
                     <Route exact path="/plantsdisplay">
                         <PlantsDisplay currentUser={currentUser}/>
                     </Route>
-                    <Route exact path="/plantform">
+                    <PrivateRoute exact path="/protected">
                         <PlantForm currentUser={currentUser}/>
-                    </Route>
+                    </PrivateRoute>
                 </Switch>
             </div>
         </Router>
