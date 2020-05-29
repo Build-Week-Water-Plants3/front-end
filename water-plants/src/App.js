@@ -9,7 +9,6 @@ import './App.css';
  COMPONENTS
  ***************/
 import Login from "./components/Login";
-import PrivateRoute from "./components/PrivateRoute";
 import RegisterForm from "./components/Register";
 import NavBar from "./components/NavBar";
 import PlantForm from './components/PlantForm';
@@ -64,9 +63,9 @@ function App() {
                     <Route exact path="/plantsdisplay">
                         <PlantsDisplay currentUser={currentUser}/>
                     </Route>
-                    <PrivateRoute exact path="/protected">
+                    <Route exact path="/plantsform">
                         <PlantForm currentUser={currentUser}/>
-                    </PrivateRoute>
+                    </Route>
                 </Switch>
             </div>
         </Router>
