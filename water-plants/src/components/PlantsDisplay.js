@@ -22,12 +22,13 @@ const PlantsDisplay = props => {
         <div style={{borderStyle: "solid", margin: '20px'}}>
             <h2>Your Plants:</h2>
             {userPlants.map((plant) =>
-                <ul>
-                    <li>Nickname: {plant.nickname} </li>
-                    <li>Species: {plant.species_name} </li>
-                    <li>{plant.h2Ofrequency}</li>
-                    <li>Image: <img src={plant.image}/></li>
-                </ul>
+                <div><img src={plant.image}/>
+                    <ul>
+                        <li>Nickname: {plant.nickname} </li>
+                        <li>Species: {plant.species_name} </li>
+                        <li>How often to water: {plant.H2Ofrequency}</li>
+                    </ul>
+                </div>
             )}
         </div>
     );
