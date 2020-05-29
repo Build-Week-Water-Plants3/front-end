@@ -6,6 +6,9 @@ export default function NavBar() {
 
         <ul className="mr-5 justify-content-center">
             <li className="list-group-item">
+                <Link to="/">Home</Link>
+            </li>
+            <li className="list-group-item">
                 <Link to="/register">Register</Link>
             </li>
             <li className="list-group-item">

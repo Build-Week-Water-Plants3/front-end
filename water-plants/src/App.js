@@ -66,6 +66,7 @@ function App() {
                     <Route exact path="/plantsform">
                         <PlantForm currentUser={currentUser}/>
                     </Route>
+                    <Route exact path={"/"}/>
                 </Switch>
             </div>
         </Router>
