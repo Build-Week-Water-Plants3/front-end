@@ -36,7 +36,7 @@ const PlantsDisplay = props => {
             {/*map over the user's plants and create a plant card for each one*/}
             {userPlants.map((plant) =>
                 <div key={plant.id}>
-                    <img src={plant.image} alt={`image of ${plant.nickname}`}/>
+                    <img src={plant.image} alt={`${plant.nickname}`}/>
                     <ul>
                         <li>Nickname: {plant.nickname} </li>
                         <li>Species: {plant.species_name} </li>
