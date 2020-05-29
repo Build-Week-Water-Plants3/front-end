@@ -1,21 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export default function NavBar() {
-    return(
+    return (
 
-<ul className="mr-5 justify-content-center">
-    <li className="list-group-item">
-        <Link to="/register">Register</Link>
-    </li>
-    <li className="list-group-item">
-        <Link to="/login">Login</Link>
-    </li>
-    <li className="list-group-item">
-        <Link to="/protected">Add a New Plant</Link>
-    </li>
-    <li className="list-group-item">
-        <Link to="/plantsdisplay">Display Your Current Plants</Link>
-    </li>
-</ul> )
+        <ul className="mr-5 justify-content-center">
+            <li className="list-group-item">
+                <Link to="/register">Register</Link>
+            </li>
+            <li className="list-group-item">
+                <Link to="/login">Login</Link>
+            </li>
+            <li className="list-group-item">
+                <Link to="/logout">Logout</Link>
+            </li>
+            <li className="list-group-item">
+                <Link to="/protected">Add a New Plant</Link>
+            </li>
+            <li className="list-group-item">
+                <Link to="/plantsdisplay">Display Your Current Plants</Link>
+            </li>
+        </ul>)
 }

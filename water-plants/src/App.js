@@ -58,6 +58,9 @@ function App() {
                         <Login currentUser={currentUser} handleUserChange={handleUserChange}
                                setCurrentUser={setCurrentUser}/>
                     </Route>
+                    <Route exact path="/logout">
+                        <Logout setCurrentUser={setCurrentUser}/>
+                    </Route>
                     <Route exact path="/plantsdisplay">
                         <PlantsDisplay currentUser={currentUser}/>
                     </Route>
