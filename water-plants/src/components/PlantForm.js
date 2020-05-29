@@ -38,7 +38,7 @@ const PlantForm = (props) => {
         formSchema.isValid(newPlant).then(valid => {
             setNewPlantValidity(valid);
         })
-    }, [newPlant])
+    }, [newPlant, formSchema])
 
 
     /***************
