@@ -1,11 +1,19 @@
+/***************
+ LIBRARIES
+ ***************/
 import React, {useEffect, useState} from 'react'
-import dummyPlants from "../dummydata";
 import {axiosWithAuth} from "../util/axiosWithAuth";
 
 
 const PlantsDisplay = props => {
+
+    /***************
+     HOOKS
+     ***************/
+        //state which tracks the user's plants (received from the server)
     const [userPlants, setUserPlants] = useState([]);
 
+    //get the user's plants from the server and set them to state
     useEffect(() => {
         axiosWithAuth()
             .get(`/users/${props.currentUser.id}/plants`)
@@ -18,9 +26,14 @@ const PlantsDisplay = props => {
             });
     }, []);
 
+
+    /***************
+     DISPLAY
+     ***************/
     return (
         <div style={{borderStyle: "solid", margin: '20px'}}>
             <h2>Your Plants:</h2>
+            {/*map over the user's plants and create a plant card for each one*/}
             {userPlants.map((plant) =>
                 <div key={plant.id}>
                     <img src={plant.image}/>
@@ -35,5 +48,8 @@ const PlantsDisplay = props => {
     );
 };
 
+/***************
+ EXPORTS
+ ***************/
 export default PlantsDisplay;
 
