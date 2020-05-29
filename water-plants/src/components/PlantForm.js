@@ -20,6 +20,7 @@ const PlantForm = (props) => {
     /***************
      HOOKS
      ***************/
+        //set a blank plant as the initial state....this is mainly so that the user_id can be set
     const blankPlant = {
         nickname: "",
         H2Ofrequency: "",
@@ -27,10 +28,12 @@ const PlantForm = (props) => {
         species_name: "",
         user_id: props.currentUser.id
     }
+
     const [newPlant, setNewPlant] = useState(blankPlant);
 
+    //create state to track whether the user's inputs to the forms are valid according to Yup; initially false b/c empty inputs = invalid
     const [newPlantValidity, setNewPlantValidity] = useState(false);
-
+    //check validity every time the state of the inputs changes and set to true once Yup validation passes
     useEffect(() => {
         formSchema.isValid(newPlant).then(valid => {
             setNewPlantValidity(valid);
@@ -41,13 +44,17 @@ const PlantForm = (props) => {
     /***************
      EVENT HANDLERS
      ***************/
+        //handle changes to the form inputs
     const handleChange = (event) => {
         setNewPlant({...newPlant, [event.target.name]: event.target.value})
         console.log(newPlant);
     }
 
+    //handle submission of the completed form
     const handleSubmit = (event) => {
+        //no page refreshes please
         event.preventDefault();
+        //if inputs pass Yup validation, post them to the server to be permanently added as a new plant
         if (newPlantValidity === true) {
             console.log(props.currentUser.id);
             console.log(newPlant);
@@ -61,6 +68,7 @@ const PlantForm = (props) => {
                     console.log(err.message);
                 });
             setNewPlant({...blankPlant})
+            //if inputs fail Yup validation, warn user need valid inputs
         } else {
             alert("You must validly complete all inputs before submitting");
         }
