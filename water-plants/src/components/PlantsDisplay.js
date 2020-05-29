@@ -22,7 +22,8 @@ const PlantsDisplay = props => {
         <div style={{borderStyle: "solid", margin: '20px'}}>
             <h2>Your Plants:</h2>
             {userPlants.map((plant) =>
-                <div><img src={plant.image}/>
+                <div key={plant.id}>
+                    <img src={plant.image}/>
                     <ul>
                         <li>Nickname: {plant.nickname} </li>
                         <li>Species: {plant.species_name} </li>

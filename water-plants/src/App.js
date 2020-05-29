@@ -54,7 +54,6 @@ function App() {
                 <NavBar/>
                 <Switch>
                     <Route exact path="/register" component={RegisterForm}/>
-               {/* <PrivateRoute exact path="/protected" component={PlantForm}/>*/}
                     <Route exact path="/login">
                         <Login currentUser={currentUser} handleUserChange={handleUserChange}
                                setCurrentUser={setCurrentUser}/>
