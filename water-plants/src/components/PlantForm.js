@@ -52,7 +52,6 @@ const PlantForm = (props) => {
 
     //handle submission of the completed form
     const handleSubmit = (event) => {
-        //no page refreshes please
         event.preventDefault();
         //if inputs pass Yup validation, post them to the server to be permanently added as a new plant
         if (newPlantValidity === true) {
@@ -79,17 +78,19 @@ const PlantForm = (props) => {
      DISPLAY
      ***************/
     return (
-        <form style={{display: 'flex', flexDirection: 'column'}} onSubmit={handleSubmit}>
-            <h1>Add a New Plant!</h1>
-            <div>Nickname: <input type='text' name={'nickname'} value={newPlant.nickname} onChange={handleChange}/>
+        <div>
+        <form onSubmit={handleSubmit}>
+            <h1 className="m-5">Add a New Plant!</h1>
+            <div class="form-group">Nickname: <input type='text' name={'nickname'} value={newPlant.nickname} onChange={handleChange}/>
             </div>
-            <div>Species: <input type='text' name={'species_name'} value={newPlant.species_name}
+            <div class="form-group">Species: <input type='text' name={'species_name'} value={newPlant.species_name}
                                  onChange={handleChange}/></div>
-            <div>How Often To Water Your Plant: <input type='text' name={'H2Ofrequency'} value={newPlant.H2Ofrequency}
+            <div class="form-group">How Often To Water Your Plant: <input type='text' name={'H2Ofrequency'} value={newPlant.H2Ofrequency}
                                                        onChange={handleChange}/></div>
-            <div>Image (URL): <input type="url" name={'image'} value={newPlant.image} onChange={handleChange}/></div>
-            <button style={{maxWidth: '30%'}} onClick={handleSubmit}>Submit</button>
+            <div class="form-group">Image (URL): <input type="url" name={'image'} value={newPlant.image} onChange={handleChange}/></div>
+            <button class="btn btn-primary" onClick={handleSubmit}>Submit</button>
         </form>
+        </div>
     )
 }
 

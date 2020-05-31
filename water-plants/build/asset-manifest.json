@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d37267ab.chunk.css",
+    "main.js": "/static/js/main.aa4224bb.chunk.js",
+    "main.js.map": "/static/js/main.aa4224bb.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.aa7730a9.js",
+    "runtime-main.js.map": "/static/js/runtime-main.aa7730a9.js.map",
+    "static/js/2.5bd77102.chunk.js": "/static/js/2.5bd77102.chunk.js",
+    "static/js/2.5bd77102.chunk.js.map": "/static/js/2.5bd77102.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.e920ec9b0c0a2fe16a6a62aebd8252f7.js": "/precache-manifest.e920ec9b0c0a2fe16a6a62aebd8252f7.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d37267ab.chunk.css.map": "/static/css/main.d37267ab.chunk.css.map",
+    "static/js/2.5bd77102.chunk.js.LICENSE.txt": "/static/js/2.5bd77102.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/plant-border.f0c5fe00.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aa7730a9.js",
+    "static/js/2.5bd77102.chunk.js",
+    "static/css/main.d37267ab.chunk.css",
+    "static/js/main.aa4224bb.chunk.js"
+  ]
+}
