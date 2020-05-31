@@ -32,7 +32,7 @@ const PlantsDisplay = props => {
      ***************/
     return (
         <div className="container-fluid">
-            <h2>Your Plants:</h2>
+            <h2 className="m-5">Your Plants:</h2>
 
             {userPlants.map((plant) =>
                 <div key={plant.id}>

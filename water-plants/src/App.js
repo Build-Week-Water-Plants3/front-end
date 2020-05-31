@@ -46,11 +46,10 @@ function App() {
      ***************/
   return (
     <Router>
-      <div className="App container-fluid p-5 mt-5">
+      <div className="App container-fluid p-5 mt-1">
         <div className="d-flex justify-content-center">
-          <h1>Water My Plants</h1>
+          <h1 className="m-5">Water My Plants</h1>
         </div>
-        <NavBar />
         <Route exact path="/" component={NavBar} />
         <Route exact path="/register" component={RegisterForm} />
         <Route exact path="/login" component={Login}>

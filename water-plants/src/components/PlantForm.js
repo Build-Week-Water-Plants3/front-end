@@ -80,7 +80,7 @@ const PlantForm = (props) => {
     return (
         <div>
         <form onSubmit={handleSubmit}>
-            <h1>Add a New Plant!</h1>
+            <h1 className="m-5">Add a New Plant!</h1>
             <div class="form-group">Nickname: <input type='text' name={'nickname'} value={newPlant.nickname} onChange={handleChange}/>
             </div>
             <div class="form-group">Species: <input type='text' name={'species_name'} value={newPlant.species_name}
