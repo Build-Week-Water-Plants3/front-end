@@ -1,7 +1,9 @@
 import React from "react";
-import {axiosWithAuth} from "../util/axiosWithAuth"
+import {axiosWithAuth} from "../util/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
+    const history = useHistory();
 
     const login = event => {
         event.preventDefault();
@@ -12,7 +14,7 @@ const Login = (props) => {
                 console.log(res.data.jwt_token);
                 props.setCurrentUser({...props.currentUser, id: res.data.id})
                 console.log(res);
-                props.history.push("/protected");
+                history.push("/plantsform");
             })
             .catch(err => {
                 console.log(err.message);

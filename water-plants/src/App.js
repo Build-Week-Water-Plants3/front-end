@@ -1,9 +1,9 @@
 /***************
  LIBRARIES
  ***************/
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import React, {useState} from 'react'
-import './App.css';
+import { BrowserRouter as Router, Route,} from "react-router-dom";
+import React, { useState } from "react";
+import "./App.css";
 
 /***************
  COMPONENTS
@@ -11,68 +11,68 @@ import './App.css';
 import Login from "./components/Login";
 import RegisterForm from "./components/Register";
 import NavBar from "./components/NavBar";
-import PlantForm from './components/PlantForm';
+import PlantForm from "./components/PlantForm";
 import PlantsDisplay from "./components/PlantsDisplay";
 import Logout from "./components/Logout";
+import PrivateRoute from "./components/PrivateRoute";
+
 
 
 /***************
  MAIN COMPONENT
  ***************/
 function App() {
-
-    /***************
+  /***************
      HOOKS
      ***************/
-    const [currentUser, setCurrentUser] = useState({
-        "username": "",
-        "password": "",
-        id: null
-    });
+  const [currentUser, setCurrentUser] = useState({
+    username: "",
+    password: "",
+    id: null
+  });
 
-
-    /***************
+  /***************
      EVENT HANDLERS
      ***************/
-    const handleUserChange = (event) => {
-        setCurrentUser({
-            ...currentUser,
-            [event.target.name]: event.target.value
-        });
-    };
+  const handleUserChange = event => {
+    setCurrentUser({
+      ...currentUser,
+      [event.target.name]: event.target.value
+    });
+  };
 
-    /***************
+  /***************
      DISPLAY & ROUTING
      ***************/
-    return (
-        <Router>
-            <div className="App container-fluid">
-                <div className="d-flex justify-content-center">
-                    <h1>Water My Plants</h1>
-                </div>
-                <NavBar/>
-                <Switch>
-                    <Route exact path="/register" component={RegisterForm}/>
-                    <Route exact path="/login">
-                        <Login currentUser={currentUser} handleUserChange={handleUserChange}
-                               setCurrentUser={setCurrentUser}/>
-                    </Route>
-                    <Route exact path="/logout">
-                        <Logout setCurrentUser={setCurrentUser}/>
-                    </Route>
-                    <Route exact path="/plantsdisplay">
-                        <PlantsDisplay currentUser={currentUser}/>
-                    </Route>
-                    <Route exact path="/plantsform">
-                        <PlantForm currentUser={currentUser}/>
-                    </Route>
-                    <Route exact path={"/"}/>
-                </Switch>
-            </div>
-        </Router>
-    );
+  return (
+    <Router>
+      <div className="App container-fluid p-5 mt-5">
+        <div className="d-flex justify-content-center">
+          <h1>Water My Plants</h1>
+        </div>
+        <NavBar />
+        <Route exact path="/" component={NavBar} />
+        <Route exact path="/register" component={RegisterForm} />
+        <Route exact path="/login" component={Login}>
+          <Login
+            currentUser={currentUser}
+            handleUserChange={handleUserChange}
+            setCurrentUser={setCurrentUser}
+          />
+        </Route>
 
+        <PrivateRoute exact path="/plantsform">
+          <Logout setCurrentUser={setCurrentUser} />
+        </PrivateRoute>
+        <PrivateRoute exact path="/plantsform">
+          <PlantsDisplay currentUser={currentUser} />
+        </PrivateRoute>
+        <PrivateRoute exact path="/plantsform">
+          <PlantForm currentUser={currentUser} />
+        </PrivateRoute>
+      </div>
+    </Router>
+  );
 }
-
 
 export default App;

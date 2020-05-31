@@ -31,22 +31,23 @@ const PlantsDisplay = props => {
      DISPLAY
      ***************/
     return (
-        <div style={{borderStyle: "solid", margin: '20px'}}>
+        <div className="container-fluid">
             <h2>Your Plants:</h2>
-            {/*map over the user's plants and create a plant card for each one*/}
+
             {userPlants.map((plant) =>
                 <div key={plant.id}>
-                    <img src={plant.image} alt={`${plant.nickname}`}/>
-                    <ul>
-                        <li>Nickname: {plant.nickname} </li>
-                        <li>Species: {plant.species_name} </li>
-                        <li>How often to water: {plant.H2Ofrequency}</li>
+                    <img class="img-fluid" src={plant.image} alt={`${plant.nickname}`}/>
+                    <ul className="list-group">
+                        <li class="list-group-item">Nickname: {plant.nickname} </li>
+                        <li class="list-group-item">Species: {plant.species_name} </li>
+                        <li class="list-group-item">How often to water: {plant.H2Ofrequency}</li>
                     </ul>
                 </div>
             )}
         </div>
     );
-};
+}
+
 
 /***************
  EXPORTS

@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url("./images/plant-border.png");
+  background-size:cover;
+  background-position:top;
+  background: cover;
 }
 
 code {
