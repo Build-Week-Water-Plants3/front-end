@@ -15,6 +15,7 @@ import PlantForm from "./components/PlantForm";
 import PlantsDisplay from "./components/PlantsDisplay";
 import Logout from "./components/Logout";
 import PrivateRoute from "./components/PrivateRoute";
+import UpdateButton from "./components/UpdateButton"
 
 
 
@@ -53,13 +54,16 @@ function App() {
         <Route exact path="/" component={NavBar} />
         <Route exact path="/register" component={RegisterForm} />
         <Route exact path="/login" component={Login}>
+        
           <Login
             currentUser={currentUser}
             handleUserChange={handleUserChange}
             setCurrentUser={setCurrentUser}
           />
         </Route>
-
+        <Route path="/updateplants/:id" component={UpdateButton}>
+    <UpdateButton></UpdateButton>
+  </Route>
         <PrivateRoute exact path="/plantsform">
           <Logout setCurrentUser={setCurrentUser} />
         </PrivateRoute>

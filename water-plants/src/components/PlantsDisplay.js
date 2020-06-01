@@ -1,5 +1,5 @@
 
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useReducer} from 'react'
 import {axiosWithAuth} from "../util/axiosWithAuth";
 import UpdateButton from './UpdateButton'
 import {Link} from 'react-router-dom'
@@ -48,8 +48,8 @@ const PlantsDisplay = props => {
                         <li class="list-group-item">Species: {plant.species_name} </li>
                         <li class="list-group-item">How often to water: {plant.H2Ofrequency}</li>
                         <button onClick={()=>{deletePlant(plant.id)}}>DELETE</button>
-{/*                         
-                        <Link to="/updateplants"><button >UPDATE</button></Link> */}
+                    
+                        <Link to={`/updateplants/${plant.id}`}><button >UPDATE</button></Link>
 
                             
 
